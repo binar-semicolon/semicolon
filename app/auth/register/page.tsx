@@ -6,7 +6,6 @@ import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { yupResolver } from "@hookform/resolvers/yup";
-import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -22,8 +21,8 @@ const schema = yup.object().shape({
   email: yup
     .string()
     .email("Invalid email format!")
-    .required("Email must be filled in!"),
-  password: yup.string().required("Password must be filled in!"),
+    .required("Email is required"),
+  password: yup.string().required("Password is required!"),
 });
 
 export default function RegisterPage() {
@@ -39,7 +38,7 @@ export default function RegisterPage() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const handleRegister = async (data: any) => {
+  const handleRegister = (data: any) => {
     if (loading) {
       return;
     }
@@ -47,24 +46,14 @@ export default function RegisterPage() {
     setLoading(true);
 
     try {
-      const response = await axios.post(
-        process.env.NEXT_PUBLIC_API + "/auth/register",
-        data,
-      );
-      const res = await response.data;
-
-      if (res.status) {
-        if (typeof window !== "undefined" && window.localStorage) {
-          localStorage.setItem("token", res.data.token);
-          localStorage.setItem("user", JSON.stringify(res.data.user));
-        }
+      console.log("Form data:", data);
+      // Simulate API call delay
+      setTimeout(() => {
+        setLoading(false);
         router.push("/home");
-      } else {
-        setErrorMessage("Tidak dapat melakukan registrasi!");
-      }
+      }, 1000);
     } catch (error) {
-      setErrorMessage("Terjadi kesalahan saat registrasi!");
-    } finally {
+      setErrorMessage("An error occurs during registration!");
       setLoading(false);
     }
   };
@@ -217,11 +206,7 @@ export default function RegisterPage() {
                   </linearGradient>
                   <path
                     fill="url(#Ld6sqrtcxMyckEl6xeDdMa_uLWV5A9vXIPu_gr1)"
-                    d="M24,4C12.954,4,4,12.954,4,24s8.954,20,20,20s20-8.954,20-20S35.046,4,24,4z"
-                  ></path>
-                  <path
-                    fill="#fff"
-                    d="M26.707,29.301h5.176l0.813-5.258h-5.989v-2.874c0-2.184,0.714-4.121,2.757-4.121h3.283V12.46 c-0.577-0.078-1.797-0.248-4.102-0.248c-4.814,0-7.636,2.542-7.636,8.334v3.498H16.06v5.258h4.948v14.452 C21.988,43.9,22.981,44,24,44c0.921,0,1.82-0.084,2.707-0.204V29.301z"
+                    d="M24,4C12.954,4,4,12.954,4,24c0,9.668,7.164,17.636,16.5,19.592V30.89h-5.1v-6.5h5.1v-4.949	c0-5.066,3.074-7.828,7.559-7.828c2.148,0,3.992,0.159,4.53,0.23v5.25H29.96c-2.261,0-2.699,1.074-2.699,2.652v3.645h5.4	l-0.869,6.5h-4.531v12.702C36.836,41.637,44,33.669,44,24C44,12.954,35.046,4,24,4z"
                   ></path>
                 </svg>
                 <span>Sign up with Facebook</span>
@@ -253,7 +238,6 @@ export default function RegisterPage() {
           </div>
         </div>
       </div>
-
       <div className="w-[50%] relative hidden md:block">
         <Image
           src="/images/bg-auth1.png"
