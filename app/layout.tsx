@@ -1,10 +1,10 @@
 import "./globals.css";
-import { ReactQueryProvider } from "@/components/providers";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { TrpcProvider } from "@/components/providers";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { SessionProvider } from "next-auth/react";
+import { Poppins } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const font = Poppins({ subsets: ["latin"], weight: "500" });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,8 +18,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={inter.className}>
-        <ReactQueryProvider>{children}</ReactQueryProvider>
+      <body className={font.className}>
+        <SessionProvider>
+          <TrpcProvider>{children}</TrpcProvider>
+        </SessionProvider>
       </body>
     </html>
   );

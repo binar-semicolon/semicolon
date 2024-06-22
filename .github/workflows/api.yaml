@@ -1,4 +1,4 @@
-name: Build
+name: API
 
 on:
   workflow_dispatch:
@@ -15,7 +15,7 @@ env:
 
 jobs:
   build:
-    name: Build and test
+    name: Check if API dependency is outdated
     timeout-minutes: 15
     runs-on: ubuntu-latest
 
@@ -31,18 +31,5 @@ jobs:
           node-version: 20
           cache: "npm"
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Typecheck
-        run: npm run typecheck
-
-      - name: Lint
-        run: npm run lint
-
-      - name: Build
-        run: npm run build
-
-      # TODO: Set this up later once we actually have tests
-      # - name: Test
-      #   run: npm run test
+      - name: Check API dependency
+        run: npm outdated @binar-semicolon/api
