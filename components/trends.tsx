@@ -10,25 +10,23 @@ const trends = [
 ];
 
 const Trends = () => (
-  <div className="flex flex-col rounded-[16px] bg-secondary">
-    <div className="flex flex-col py-3.5">
-      <h2 className="font-bold text-lg pb-[7px] px-3.5">Indonesia trends</h2>
-      {trends.map((trend) => (
-        <Link
-          key={trend.rank}
-          href="#"
-          className="flex justify-between items-center hover:bg-gray-800"
-        >
-          <div className="flex px-3.5 py-[7px]">
-            <div>
-              <p className="text-username text-sm">{trend.rank} • Trending</p>
-              <p className="text-base font-bold">{trend.topic}</p>
-              <p className="text-username text-sm">{trend.posts}</p>
-            </div>
+  <div className="flex flex-col py-3.5">
+    <h2 className="font-bold text-lg pb-[7px] px-3.5">Indonesia trends</h2>
+    {trends.map((trend) => (
+      <Link
+        key={trend.rank}
+        href="#"
+        className="flex justify-between items-center hover:bg-gray-800"
+      >
+        <div className="flex px-3.5 py-[7px]">
+          <div>
+            <p className="text-username text-sm">{trend.rank} • Trending</p>
+            <p className="text-base font-bold">{trend.topic}</p>
+            <p className="text-username text-sm">{trend.posts}</p>
           </div>
-        </Link>
-      ))}
-    </div>
+        </div>
+      </Link>
+    ))}
   </div>
 );
 

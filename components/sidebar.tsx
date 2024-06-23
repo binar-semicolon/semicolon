@@ -2,10 +2,14 @@ import Logo from "./logo";
 import NavItem from "./nav-item";
 import React from "react";
 
-const Sidebar = () => (
-  <div className="min-w-[230px]">
-    <Logo />
-    <div className="flex flex-col gap-[30px]">
+interface SidebarProps {
+  className?: string;
+}
+
+const Sidebar = ({ className }: SidebarProps) => {
+  return (
+    <div className={`lg:flex lg:flex-col lg:gap-[30px] ${className}`}>
+      <Logo className="mb-6 lg:mb-0" />
       <NavItem href="#" icon="/images/home-hashtag.svg" text="Home" active />
       <NavItem href="#" icon="/images/search-normal.svg" text="Explore" />
       <NavItem href="#" icon="/images/notification.svg" text="Notifications" />
@@ -15,7 +19,7 @@ const Sidebar = () => (
       <NavItem href="#" icon="/images/profile-circle.svg" text="Profile" />
       <NavItem href="#" icon="/images/group.svg" text="Sign Out" />
     </div>
-  </div>
-);
+  );
+};
 
 export default Sidebar;
