@@ -28,6 +28,7 @@ export default function Page({
         isOwner={isOwner}
         isFollowing={isFollowing}
       />
+      <Separator />
       <div className="mb-4 flex flex-col">
         {_.range(0, 16).map((index) => (
           <React.Fragment key={index}>
