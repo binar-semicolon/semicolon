@@ -53,7 +53,7 @@ const ProfileCard = ({
 
       <div className="px-5">
         <div className="flex flex-col justify-start gap-3.5 pt-[70px]">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between gap-3">
             <div>
               <span className="flex flex-row items-center gap-2 text-base font-bold">
                 <p className="truncate">{name}</p>
@@ -70,7 +70,7 @@ const ProfileCard = ({
               {isOwner ? (
                 <Link
                   href={"#"}
-                  className="min-w-[100px] cursor-pointer gap-3 text-nowrap rounded-full border px-4 py-1"
+                  className="min-w-[100px] cursor-pointer text-nowrap rounded-full border px-4 py-1"
                 >
                   <span>Edit profile</span>
                 </Link>
