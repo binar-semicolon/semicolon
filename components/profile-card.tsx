@@ -66,11 +66,11 @@ const ProfileCard = ({
               </p>
             </div>
 
-            <div className="flex gap-4">
+            <div className="flex">
               {isOwner ? (
                 <Link
                   href={"#"}
-                  className="min-w-[100px] cursor-pointer text-nowrap rounded-full border px-4 py-1"
+                  className="min-w-[100px] cursor-pointer gap-3 text-nowrap rounded-full border px-4 py-1"
                 >
                   <span>Edit profile</span>
                 </Link>
