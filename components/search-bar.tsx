@@ -1,26 +1,17 @@
-import React, { useState } from 'react';
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { Input } from "./ui/input";
+import { Search } from "lucide-react";
+import React from "react";
 
-
-const SearchBar: React.FC<{ onSearch: (query: string) => void }> = ({ onSearch }) => {
-    const [query, setQuery] = useState('');
-  
-    const handleSearch = () => {
-      onSearch(query);
-    };
-  
-    return (
-      <div className="flex space-x-2">
-        <Input
-          type="text"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search..."
-        />
-        <Button onClick={handleSearch}>Search</Button>
-      </div>
-    );
-  };
-  
-  export default SearchBar;
+export function SearchBar() {
+  return (
+    <div className="flex items-center justify-start gap-4 rounded-full border pl-4">
+      <Search />
+      <Input
+        type="text"
+        placeholder="Search"
+        id="search"
+        className="h-12 flex-grow rounded-r-full border-none bg-transparent text-base text-white"
+      />
+    </div>
+  );
+}
