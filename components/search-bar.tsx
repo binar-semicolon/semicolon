@@ -2,7 +2,11 @@ import { Input } from "./ui/input";
 import { Search } from "lucide-react";
 import React from "react";
 
-export function SearchBar() {
+export function SearchBar({ onSearch }) {
+  const handleInputChange = (e) => {
+    onSearch(e.target.value);
+  };
+
   return (
     <div className="flex items-center justify-start gap-4 rounded-full border pl-4">
       <Search />
@@ -11,6 +15,7 @@ export function SearchBar() {
         placeholder="Search"
         id="search"
         className="h-12 flex-grow rounded-r-full border-none bg-transparent text-base text-white"
+        onChange={handleInputChange}
       />
     </div>
   );
