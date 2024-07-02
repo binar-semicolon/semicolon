@@ -1,131 +1,10 @@
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { Button } from "./ui/button";
-import { Card, CardContent } from "./ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "@semicolon/ui/avatar";
+import { Button } from "@semicolon/ui/button";
+import { Card, CardContent } from "@semicolon/ui/card";
 import { BadgeCheck } from "lucide-react";
 import React from "react";
 
-const suggestions = [
-  {
-    name: "John Doe",
-    username: "john_doe",
-    avatar: "",
-    bio: "Passionate traveler and food lover.",
-  },
-  {
-    name: "Jane Smith",
-    username: "jane_smith",
-    avatar: "",
-    bio: "Digital artist and coffee addict.",
-  },
-  {
-    name: "Alice Johnson",
-    username: "alice_j",
-    avatar: "",
-    bio: "Tech enthusiast and blogger.",
-  },
-  {
-    name: "Bob Brown",
-    username: "bob_brown",
-    avatar: "",
-    bio: "Fitness junkie and health coach.",
-  },
-  {
-    name: "Charlie Davis",
-    username: "charlie_d",
-    avatar: "",
-    bio: "Gamer and software developer.",
-  },
-  {
-    name: "Diana Wilson",
-    username: "diana_w",
-    avatar: "",
-    bio: "Nature photographer and hiker.",
-  },
-  {
-    name: "Ethan Moore",
-    username: "ethan_m",
-    avatar: "",
-    bio: "Aspiring chef and food critic.",
-  },
-  {
-    name: "Fiona Taylor",
-    username: "fiona_t",
-    avatar: "",
-    bio: "Musician and cat lover.",
-  },
-  {
-    name: "George Anderson",
-    username: "george_a",
-    avatar: "",
-    bio: "History buff and bookworm.",
-  },
-  {
-    name: "Hannah Thomas",
-    username: "hannah_t",
-    avatar: "",
-    bio: "Fashion designer and trendsetter.",
-  },
-  {
-    name: "Ian White",
-    username: "ian_w",
-    avatar: "",
-    bio: "Entrepreneur and startup mentor.",
-  },
-  {
-    name: "Jasmine Lewis",
-    username: "jasmine_l",
-    avatar: "",
-    bio: "Fitness trainer and yoga instructor.",
-  },
-  {
-    name: "Kevin Harris",
-    username: "kevin_h",
-    avatar: "",
-    bio: "Photographer and travel blogger.",
-  },
-  {
-    name: "Laura Clark",
-    username: "laura_c",
-    avatar: "",
-    bio: "Graphic designer and illustrator.",
-  },
-  {
-    name: "Michael King",
-    username: "michael_k",
-    avatar: "",
-    bio: "Tech entrepreneur and coder.",
-  },
-  {
-    name: "Nina Baker",
-    username: "nina_b",
-    avatar: "",
-    bio: "Writer and avid reader.",
-  },
-  {
-    name: "Oscar Martinez",
-    username: "oscar_m",
-    avatar: "",
-    bio: "Digital marketer and SEO expert.",
-  },
-  {
-    name: "Paula Lopez",
-    username: "paula_l",
-    avatar: "",
-    bio: "Baker and cake decorator.",
-  },
-  {
-    name: "Quincy Robinson",
-    username: "quincy_r",
-    avatar: "",
-    bio: "Musician and music producer.",
-  },
-  {
-    name: "Rachel Green",
-    username: "rachel_g",
-    avatar: "",
-    bio: "Interior designer and DIY enthusiast.",
-  },
-];
+// root/apps/web/components/search-results-user.tsx
 
 export function SearchResultUser({ searchTerm }) {
   const filteredSuggestions = suggestions.filter(
@@ -152,7 +31,7 @@ export function SearchResultUser({ searchTerm }) {
                       <p className="truncate">{user.name}</p>
                       <BadgeCheck className="size-5 flex-none stroke-sky-400" />
                     </span>
-                    <p className="truncate text-sm text-muted-foreground">
+                    <p className="text-muted-foreground truncate text-sm">
                       @{user.username}
                     </p>
                   </div>
@@ -164,7 +43,7 @@ export function SearchResultUser({ searchTerm }) {
                   Follow
                 </Button>
               </div>
-              <p className="pl-2 text-sm text-muted-foreground">{user.bio}</p>
+              <p className="text-muted-foreground pl-2 text-sm">{user.bio}</p>
             </div>
           ))}
         </div>

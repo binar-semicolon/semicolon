@@ -1,11 +1,13 @@
-// import { trpc } from "../lib/trpc";
+import { trpc } from "../lib/trpc";
 import { Tweet } from "./tweet";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { Button } from "./ui/button";
-import { Card, CardContent } from "./ui/card";
-import { Separator } from "./ui/separator";
+import { Avatar, AvatarFallback, AvatarImage } from "@semicolon/ui/avatar";
+import { Button } from "@semicolon/ui/button";
+import { Card, CardContent } from "@semicolon/ui/card";
+import { Separator } from "@semicolon/ui/separator";
 import { BadgeCheck } from "lucide-react";
 import React from "react";
+
+// root/apps/web/components/search-results.tsx
 
 export function SearchResults({ query }: { query: string }) {
   const { data, error, isLoading } = trpc.search.searchPosts.useQuery(query);
@@ -37,10 +39,10 @@ export function SearchResults({ query }: { query: string }) {
                   <span className="flex items-center gap-2 text-base font-bold">
                     {user.name} <BadgeCheck className="size-5 stroke-sky-400" />
                   </span>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-muted-foreground text-sm">
                     @{user.username}
                   </p>
-                  <p className="text-sm text-muted-foreground">{user.bio}</p>
+                  <p className="text-muted-foreground text-sm">{user.bio}</p>
                 </div>
                 <Button className="ml-auto">Follow</Button>
               </div>

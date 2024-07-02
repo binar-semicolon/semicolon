@@ -2,6 +2,8 @@ import { Input } from "@semicolon/ui/input";
 import { Search } from "lucide-react";
 import React, { useState } from "react";
 
+// root/apps/web/components/search-bar.tsx
+
 export function SearchBar({ onSearch }) {
   const [input, setInput] = useState("");
 

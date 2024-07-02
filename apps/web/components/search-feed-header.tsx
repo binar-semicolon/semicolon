@@ -1,8 +1,10 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@semicolon/ui/utils";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+
+// root/apps/web/components/search-feed-header.tsx
 
 export function SearchFeedHeader({
   className,
@@ -11,7 +13,6 @@ export function SearchFeedHeader({
   const [currentPath, setCurrentPath] = useState("");
 
   useEffect(() => {
-    // Ensure the code runs only on the client side
     if (typeof window !== "undefined") {
       setCurrentPath(window.location.pathname);
     }
