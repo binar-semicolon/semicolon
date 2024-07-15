@@ -20,8 +20,9 @@ export type Account = {
     updatedAt: Timestamp;
 };
 export type Like = {
-    A: string;
-    B: string;
+    postId: string;
+    userId: string;
+    createdAt: Generated<Timestamp>;
 };
 export type Post = {
     id: Generated<string>;
@@ -44,8 +45,10 @@ export type User = {
     username: string | null;
     name: string | null;
     email: string;
+    header: string | null;
     registered: Timestamp | null;
     location: string | null;
+    website: string | null;
     verified: Generated<boolean>;
     emailVerified: Timestamp | null;
     birthday: Timestamp | null;
@@ -64,9 +67,9 @@ export type VerificationToken = {
     expires: Timestamp;
 };
 export type DB = {
-    _Like: Like;
     _UserFollow: UserFollow;
     Account: Account;
+    Like: Like;
     Post: Post;
     Session: Session;
     User: User;
