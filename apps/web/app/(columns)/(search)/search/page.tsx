@@ -54,13 +54,26 @@ export default function Page() {
   }, [searchParams]);
 
   return (
-    <PostFeed
-      posts={results}
-      loading={isLoading || isFetchingNextPage}
-      error={isLoadingError || isFetchNextPageError}
-      fetchNextPage={fetchNextPage}
-      refetch={refetch}
-      hasNextPage={hasNextPage}
-    />
+    <div className="flex flex-col items-center">
+      <PostFeed
+        posts={results}
+        loading={isLoading || isFetchingNextPage}
+        error={isLoadingError || isFetchNextPageError}
+        fetchNextPage={fetchNextPage}
+        refetch={refetch}
+        hasNextPage={hasNextPage}
+      />
+      {rawResults?.pages[0]?.results.length === 0 && (
+        <article className="flex max-w-[450px] flex-col gap-3 p-9">
+          <p className="text-3xl font-black">
+            No results for {`"${params?.query}"`}
+          </p>
+          <p className="text-muted-foreground text-base">
+            Try searching for something else, or check if you made a mistake in
+            your query.
+          </p>
+        </article>
+      )}
+    </div>
   );
 }
