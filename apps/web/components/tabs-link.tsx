@@ -3,6 +3,7 @@
 import { Button } from "@semicolon/ui/button";
 import { Separator } from "@semicolon/ui/separator";
 import { cn } from "@semicolon/ui/utils";
+import _ from "lodash";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
@@ -37,14 +38,16 @@ export function TabsLink({
       if (!href.startsWith("/")) {
         throw Error("Tabs must link to an absolute URL");
       }
-      return params ? `${href}?${params}` : href;
+      return params ? _.trimEnd(`${href}?${params}`, "?") : href;
     }
 
     if (!href.pathname) {
       throw Error("UrlObject did not return a valid pathname");
     }
 
-    return params ? `${href.pathname}?${params}` : href.pathname;
+    return params
+      ? _.trimEnd(`${href.pathname}?${params}`, "?")
+      : href.pathname;
   }, [href, query, searchParams]);
 
   const [resolvedHref, setResolvedHref] = useState(() => validateHref());
