@@ -5,9 +5,11 @@ import { Button } from "@semicolon/ui/button";
 import { Ellipsis } from "lucide-react";
 import React from "react";
 
-export default function Layout() {
+export default function Layout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <div className="bg-card sticky top-0 z-40 flex flex-col gap-1">
+    <div className="bg-card sticky top-0 z-40 flex w-full min-w-[257px] flex-col gap-1 md:max-w-[650px]">
       <BackHeader className="flex flex-row px-3">
         <SearchBar />
         <Button
@@ -29,6 +31,7 @@ export default function Layout() {
           People
         </TabsLink>
       </TabsList>
+      {children}
     </div>
   );
 }

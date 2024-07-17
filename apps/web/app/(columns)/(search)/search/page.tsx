@@ -1,32 +1,31 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { redirect, useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
-
-enum ActiveTab {
-  Top = "top",
-  Latest = "latest",
-  People = "people",
-}
 
 export default function Page() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const queryParam = searchParams.get("q") || "";
-
-  const [query, setQuery] = useState<string>(queryParam);
-  const [activeTab, setActiveTab] = useState(ActiveTab.Top);
+  const [params, setParams] = useState<Record<"query" | "tab", string | null>>({
+    query: null,
+    tab: null,
+  });
 
   useEffect(() => {
-    if (queryParam) {
-      setQuery(queryParam);
+    const query = searchParams.get("q");
+    if (query === null) {
+      redirect("/home");
     }
-  }, [queryParam]);
 
-  const handleSearch = (newQuery: string) => {
-    setQuery(newQuery);
-    router.push(`/search?q=${newQuery}`);
-  };
+    const tab = searchParams.get("f");
+    if (![null, "latest", "people"].includes(tab)) {
+      const updated = new URLSearchParams(searchParams.toString());
+      updated.delete("f");
+      window.history.replaceState(null, "", `?${updated.toString()}`);
+    }
+
+    setParams({ query, tab });
+  }, [searchParams]);
 
   return <div>hello world</div>;
 }
