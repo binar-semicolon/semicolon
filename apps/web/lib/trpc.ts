@@ -1,25 +1,22 @@
 import { getBaseUrl } from "./utils";
 import type { AppRouter } from "@semicolon/api";
-import { createTRPCClient, httpBatchLink } from "@trpc/client";
-import { cookies } from "next/headers";
+import { httpBatchLink } from "@trpc/client";
+import { createTRPCReact } from "@trpc/react-query";
 import superjson from "superjson";
 
-export const trpc = createTRPCClient<AppRouter>({
+export const trpc = createTRPCReact<AppRouter>();
+
+export const trpcClient = trpc.createClient({
   links: [
     httpBatchLink({
       url: `${getBaseUrl()}/api/trpc`, // eslint-disable-line @typescript-eslint/no-non-null-assertion
-      headers() {
-        return {
-          Cookie: cookies().toString(),
-        };
-      },
       fetch(url, options) {
         return fetch(url, {
           ...options,
           credentials: "include",
         });
       },
-      transformer: superjson,
     }),
   ],
+  transformer: superjson,
 });
