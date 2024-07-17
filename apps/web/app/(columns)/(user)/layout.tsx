@@ -1,6 +1,5 @@
 "use client";
 
-// root/apps/web/app/(columns)/(user)/page.tsx
 import { SearchBar } from "@/components/search-bar";
 import { Sticky } from "@/components/sticky";
 import { Suggestions } from "@/components/suggestions";

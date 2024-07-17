@@ -1,5 +1,3 @@
-// root/apps/web/components/post-feed.tsx
-
 "use client";
 
 import { Post } from "@/components/post";

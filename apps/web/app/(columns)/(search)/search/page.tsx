@@ -1,4 +1,3 @@
-// root/apps/web/app/(columns)/search/page.tsx
 "use client";
 
 import { BackHeader } from "@/components/back-header";
@@ -9,8 +8,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@semicolon/ui/tabs";
 import { Ellipsis } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
-
-// root/apps/web/app/(columns)/search/page.tsx
 
 enum ActiveTab {
   Top = "top",

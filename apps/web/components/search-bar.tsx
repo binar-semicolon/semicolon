@@ -1,11 +1,8 @@
-// root/apps/web/components/search-bar.tsx
 "use client";
 
 import { Input } from "@semicolon/ui/input";
 import { Search } from "lucide-react";
 import React, { useState, useEffect } from "react";
-
-// root/apps/web/components/search-bar.tsx
 
 interface SearchBarProps {
   onSearch?: (query: string) => void;
