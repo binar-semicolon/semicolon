@@ -15,7 +15,7 @@ enum ActiveTab {
   People = "people",
 }
 
-const SearchPage: React.FC = () => {
+export default function Page() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const queryParam = searchParams.get("q") || "";
@@ -69,6 +69,4 @@ const SearchPage: React.FC = () => {
       </TabsContent>
     </Tabs>
   );
-};
-
-export default SearchPage;
+}

@@ -8,7 +8,11 @@ import { Separator } from "@semicolon/ui/separator";
 import { useRouter } from "next/navigation";
 import React from "react";
 
-const UserPageLayout: React.FC = ({ children }) => {
+export default function Layout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   const router = useRouter();
 
   const handleSearch = (query: string) => {
@@ -35,6 +39,4 @@ const UserPageLayout: React.FC = ({ children }) => {
       </div>
     </>
   );
-};
-
-export default UserPageLayout;
+}
