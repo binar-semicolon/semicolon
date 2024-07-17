@@ -4,12 +4,7 @@ import { Input } from "@semicolon/ui/input";
 import { Search } from "lucide-react";
 import React, { useState, useEffect } from "react";
 
-interface SearchBarProps {
-  onSearch?: (query: string) => void;
-  initialValue?: string;
-}
-
-export function SearchBar({ onSearch, initialValue = "" }: SearchBarProps) {
+export function SearchBar() {
   const [value, setValue] = useState(initialValue);
 
   useEffect(() => {
