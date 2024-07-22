@@ -1,54 +1,48 @@
 "use client";
 
 import { PostSearch, UserSearch } from "@/components/search-view";
-import Spinner from "@semicolon/ui/spinner";
-import { redirect, useSearchParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
-import { z } from "zod";
+import { useSearchFilters } from "@/lib/hooks";
+import { redirect } from "next/navigation";
+import React from "react";
 
 export default function Page() {
-  const searchParams = useSearchParams();
-  const [params, setParams] = useState<{
-    query: string;
-    tab: "rel" | "latest" | "people";
-  } | null>(null);
+  const [
+    ,
+    {
+      tab,
+      query,
+      following,
+      from,
+      to,
+      minLikes,
+      minReplies,
+      reply,
+      since,
+      until,
+    },
+  ] = useSearchFilters();
 
-  useEffect(() => {
-    const query = searchParams.get("q");
-    if (query === null) {
-      redirect("/home");
-    }
+  if (!query) {
+    redirect("/home");
+  }
 
-    const { data: tab } = z
-      .union([z.null(), z.literal("latest"), z.literal("people")])
-      .safeParse(searchParams.get("f"));
-
-    if (!tab) {
-      const updated = new URLSearchParams(searchParams.toString());
-      updated.delete("f");
-      window.history.replaceState(null, "", `?${updated.toString()}`);
-      setParams({ query, tab: "rel" });
-    } else {
-      setParams({ query, tab });
-    }
-  }, [searchParams]);
-
-  return (
-    <>
-      {params ? (
-        params.tab === "people" ? (
-          <UserSearch query={params.query} />
-        ) : (
-          <PostSearch
-            query={params.query}
-            sortBy={params.tab === "rel" ? "relevancy" : "recency"}
-          />
-        )
-      ) : (
-        <div className="flex min-h-20 items-center justify-center">
-          <Spinner size={30} />
-        </div>
-      )}
-    </>
+  return tab === "people" ? (
+    <UserSearch query={query} following={following} maxResults={15} />
+  ) : (
+    <PostSearch
+      sortBy={tab}
+      maxResults={15}
+      {...{
+        query,
+        following,
+        from,
+        to,
+        minLikes,
+        minReplies,
+        reply,
+        since,
+        until,
+      }}
+    />
   );
 }
